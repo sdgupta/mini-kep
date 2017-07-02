@@ -5,11 +5,11 @@ Comments regarding modifications are enclosed by '##' characters.
 
 The line numbers where modifications have been made are as follows :
 
-1. Line 106
-2. Line 198
-3. Lines 432-442
-4. Lines 511-552
-5. Lines 586-588
+1. Line 105
+2. Line 197
+3. Lines 416-428
+4. Lines 496-537
+5. Lines 571-573
 
 """
 
