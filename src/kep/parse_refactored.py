@@ -194,7 +194,9 @@ class RowStack:
             s = marker['start']
             e = marker['end']
             if self.is_found(s) and self.is_found(e):
-                yield self.pop_segment(s, e)          ##changed return to yield ##
+                ## changed return to yield
+                ## EP: a function cannot have return yield and return statements inside   
+                yield self.pop_segment(s, e)          
         self.echo_error_ends_not_found(pdef)
         return []
 
@@ -388,7 +390,7 @@ class Header:
                ["{} <{}>".format(v, k) for k, v in self.processed.items()]
         return "\n".join(show)
 
-
+## EP: why there is so much whitespace???
 
 
 
@@ -412,13 +414,14 @@ def check_required_labels(tables, pdef):
     if labels_missed:
         raise ValueError("Missed labels:" + labels_missed.__str__())
 
-
-def get_tables_from_rows_segment(rows_segment, pdef, units=UNITS): ## Refactored this method since rows_segment contains list of segments and not a single segment ##
+## Refactored this method since rows_segment contains list of segments and not a single segment
+## EP: why do you get this? rows_segment is a list of rows, just like RowStack rows is
+def get_tables_from_rows_segment(rows_segment, pdef, units=UNITS): 
 
     tables=[]
 
     for r in rows_segment:
-
+        ## EP: where you ever running this? - t.parse(self,pdef) 
         tables_single_segment=[t.parse(self,pdef) for t in split_to_tables(r)]
         tables.extend(tables_single_segment)
 
@@ -490,6 +493,10 @@ class DictMaker:
 Removed the class Datapoints and all the functionalities of Datapoints class are being implemented through the Emitter class.
 The Emitter class takes a list of all tables as argument and holds the datapoints for all tables in the self.datapoints attribute.
 '''
+
+# EP: it is the third time I insist Emitter should be a class on Table, not a list of table. Can merge Datapoints and Frames, 
+# but in a different fashion.
+
 
 ##
 
